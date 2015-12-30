@@ -1,0 +1,11 @@
+1) list functions to add to R
+  i) populateNewDirectory
+  ii) makeNewFolder
+  iii) makeLink
+  iv) moveFile
+  v) crawlSynapseObjectList
+  vi) makeHeadFolder
+  vii) adjacentEdges
+  viii) moveSingleFile
+  ix) moveFolder2
+  x) reverseLink
