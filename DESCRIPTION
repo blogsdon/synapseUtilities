@@ -1,0 +1,10 @@
+Package: synapseUtilities
+Type: Package
+Title: utilities for manipulating and querying synapse
+Version: 0.1
+Date: 2015-12-30
+Author: Benjamin A Logsdon
+Maintainer: Benjamin A Logsdon <ben.logsdon@sagebase.org>
+Description: Utility functions to manipulate objects in synapse
+License: GPL-2
+LazyData: TRUE
