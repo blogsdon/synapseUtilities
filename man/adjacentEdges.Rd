@@ -2,7 +2,7 @@
 \alias{adjacentEdges}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+  grab children of a given entity
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -47,9 +47,9 @@ adjacentEdges(synId)
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (synId) 
+function (synId)
 {
-    str <- paste("SELECT id, name, concreteType FROM entity WHERE parentId==\"", 
+    str <- paste("SELECT id, name, concreteType FROM entity WHERE parentId==\"",
         synId, "\"", sep = "")
     foo <- synQuery(str, blockSize = 300)
     res <- foo$collectAll()

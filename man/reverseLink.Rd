@@ -2,7 +2,7 @@
 \alias{reverseLink}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+  reverse a link
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -47,7 +47,7 @@ reverseLink(synId)
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (synId) 
+function (synId)
 {
     foo <- synGet(synId, downloadFile = F)
     fooProperties <- synGetProperties(foo)

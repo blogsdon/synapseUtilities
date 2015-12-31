@@ -2,7 +2,7 @@
 \alias{populateInternalDirectoryMigration}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+  migration function to populate internal directory with necessary structure after migration
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -56,7 +56,7 @@ populateInternalDirectoryMigration(synId, G, Q = NULL, topId)
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (synId, G, Q = NULL, topId) 
+function (synId, G, Q = NULL, topId)
 {
     if (is.null(Q)) {
         Q <- list()
@@ -81,14 +81,14 @@ function (synId, G, Q = NULL, topId)
             if (Q$adj[synId, e[i]] == 0) {
                 Q$adj[synId, e[i]] <- 1
                 if (G$type[e[i]] == "org.sagebionetworks.repo.model.Folder") {
-                  Q$newid[e[i]] <- makeNewFolder(synId, e[i], 
+                  Q$newid[e[i]] <- makeNewFolder(synId, e[i],
                     Q, G)
                   Q <- populateNewDirectory2(e[i], G, Q, topId)
                 }
                 else if (G$type[e[i]] == "org.sagebionetworks.repo.model.FileEntity") {
                   w1 <- which(Q$adj[, Q$newid[e[i]]] == 1)
                   print(c(G$name[e[i]], Q$newid[w1], e[i]))
-                  makeLink(fileId = as.character(e[i]), parentId = as.character(Q$newid[w1]), 
+                  makeLink(fileId = as.character(e[i]), parentId = as.character(Q$newid[w1]),
                     linkName = as.character(G$name[e[i]]))
                 }
                 else {

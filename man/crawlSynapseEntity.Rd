@@ -2,7 +2,7 @@
 \alias{crawlSynapseEntity}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+  recursively query the file hiearachy of a given synapse entity
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -50,7 +50,7 @@ crawlSynapseEntity(synId, G = NULL)
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (synId, G = NULL) 
+function (synId, G = NULL)
 {
     result <- adjacentEdges(synId)
     while (!is.null(result)) {
@@ -80,13 +80,13 @@ function (synId, G = NULL)
         }
         for (i in 1:length(result$entity.id)) {
             if (!as.character(result$entity.id[i]) \%in\% G$adjList[[as.character(synId)]]) {
-                G$adjList[[as.character(synId)]] <- c(G$adjList[[as.character(synId)]], 
+                G$adjList[[as.character(synId)]] <- c(G$adjList[[as.character(synId)]],
                   as.character(result$entity.id[i]))
                 cat("Crawling", result$entity.id[i], "\n")
-                cat("Number of branches:", length(c(unlist(G$adjList))), 
+                cat("Number of branches:", length(c(unlist(G$adjList))),
                   "\n")
                 cat("Number of nodes:", length(G$adjList), "\n")
-                G <- crawlSynapseEntity(result$entity.id[i], 
+                G <- crawlSynapseEntity(result$entity.id[i],
                   G)
             }
             else {

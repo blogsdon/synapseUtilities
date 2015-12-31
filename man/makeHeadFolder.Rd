@@ -2,7 +2,7 @@
 \alias{makeHeadFolder}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+  make the top entity a folder
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -50,7 +50,7 @@ makeHeadFolder(synObj, synid)
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (synObj, synid) 
+function (synObj, synid)
 {
     synObj$adj[1, 1] <- 1
     synObj$type[1] <- "org.sagebionetworks.repo.model.Folder"

@@ -2,7 +2,7 @@
 \alias{moveFile}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+  move a file
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -50,7 +50,7 @@ moveFile(fileId, parentId)
 ##--	or do  help(data=index)  for the standard data sets.
 
 ## The function is currently defined as
-function (fileId, parentId) 
+function (fileId, parentId)
 {
     myFile <- synGet(fileId, downloadFile = FALSE)
     myFile$properties$parentId <- parentId
