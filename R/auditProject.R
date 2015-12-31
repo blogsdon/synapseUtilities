@@ -1,11 +1,11 @@
 auditProject <- function(crawledProject,dictionaryId,tableUploadId,auditName){
   #crawledProject: list with the following elements
-  #adjList -> list with children of each synapseId
-  #id -> synapse ids
-  #name -> synapse entity names
-  #type -> entity types
-  #anno <- synapse annotations
-  #syn <- synapse meta data about each entity
+  #adjList -> list with children of each synapseId in crawled project
+  #id -> synapse ids of crawled project
+  #name -> synapse entity names of crawled project
+  #type -> entity types  of crawled project
+  #anno <- synapse annotations of crawled project
+  #syn <- synapse meta data about each entity in crawled project
 
   #dictionaryId: synapse ID of the synapse Table with the dictionary
   #tableUploadId: project where the audit table will go
