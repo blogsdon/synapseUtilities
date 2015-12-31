@@ -10,10 +10,12 @@
   ix) moveFolder2
   x) reverseLink
 
-2) add descriptions to all the functions
 
 3) add audit functions (...)
+  i)
 
 4) re-run audit on ROSMAP
 
 5) identify new errors
+
+2) add descriptions to all the functions
