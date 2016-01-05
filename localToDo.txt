@@ -19,3 +19,7 @@
 5) identify new errors
 
 2) add descriptions to all the functions
+
+x) rename crawlProject to crawlWrapper
+
+x) figure out how to use makeHeadFolder appropriately

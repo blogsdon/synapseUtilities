@@ -1,7 +1,13 @@
-auditSummaryByFolder <- function(){
+auditSummaryByFolder <- function(synIdAudit,tableId,summaryName){
 
+  library(synapseClient)
+  synapseLogin()
 
-  require(dplyr)
+  library(dplyr)
+  foo <- synapseClient::synTableQuery(paste0('select * from ',synIdAudit))
+  hasInd <- grep('has',colnames(foo@values))
+  valueInd <- grep('ValueIn',colnames(foo@values))
+
   annotationAuditFolderSummary <- dplyr::filter(annotationAuditDataFrame,entityType=='Folder') %>%
     dplyr::select(synapseID)
 
@@ -39,8 +45,8 @@ auditSummaryByFolder <- function(){
 
         #annotationAuditDataFrame[children[w1],] %>% dplyr::select(hasconsortium,hascenter,hasstudy,hasdisease,hasassay,hasfileType,hasmodelSystem,hastissueType,hasorganism) %>% print
         annotationAuditFolderSummary$totalhasMinimumNecessaryAnnotations[i] <- annotationAuditDataFrame[children[w1],] %>% dplyr::select(hasconsortium,hascenter,hasstudy,hasdisease,hasassay,hasfileType,hasmodelSystem,hastissueType,hasorganism) %>%as.matrix %>% sum(na.rm=T)
-        annotationAuditFolderSummary$meanDictionaryErrors[i] <- (!annotationAuditDataFrame[children[w1],25:43]) %>%as.matrix %>% mean(na.rm=T)
-        annotationAuditFolderSummary$totalDictionaryErrors[i] <- (!annotationAuditDataFrame[children[w1],25:43]) %>%as.matrix %>% sum(na.rm=T)
+        annotationAuditFolderSummary$meanDictionaryErrors[i] <- (!annotationAuditDataFrame[children[w1],valueInd]) %>%as.matrix %>% mean(na.rm=T)
+        annotationAuditFolderSummary$totalDictionaryErrors[i] <- (!annotationAuditDataFrame[children[w1],valueInd]) %>%as.matrix %>% sum(na.rm=T)
       }
     }
   }
@@ -51,8 +57,8 @@ auditSummaryByFolder <- function(){
   tcresult<-as.tableColumns(annotationAuditFolderSummary)
   cols<-tcresult$tableColumns
   fileHandleId<-tcresult$fileHandleId
-  projectId<-"syn2397881"
-  schema<-TableSchema(name="AMP AD Audit Folder Summaries Ver 2", parent=projectId, columns=cols)
+  #projectId<-"syn2397881"
+  schema<-TableSchema(name=summaryName, parent=tableId, columns=cols)
   table<-Table(schema, fileHandleId)
   table<-synStore(table, retrieveData=TRUE)
 }

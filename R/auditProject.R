@@ -1,4 +1,4 @@
-auditProject <- function(crawledProject,dictionaryId,tableUploadId,auditName){
+auditProject <- function(crawledProject,dictionaryId,tableUploadId,auditName,isFolder=TRUE){
   #crawledProject: list with the following elements
   #adjList -> list with children of each synapseId in crawled project
   #id -> synapse ids of crawled project
@@ -42,8 +42,13 @@ auditProject <- function(crawledProject,dictionaryId,tableUploadId,auditName){
 
   #get the entity types
   entityType <- sapply(crawledProject$type,splitPeriod,n=5)
-  entityType[1] <- 'Project'
-  entityType[2] <- 'Table'
+  if(isFolder){
+    entityType[1] <- 'Folder'
+  }else{
+    entityType[1] <- 'Project'
+  }
+  #entityType[1] <- 'Project'
+  #entityType[2] <- 'Table'
 
   #define the result data frame for the audit
   annotationAuditDataFrame <- data.frame(synId=crawledProject$id,
@@ -52,7 +57,9 @@ auditProject <- function(crawledProject,dictionaryId,tableUploadId,auditName){
                                          stringsAsFactors = F)
 
   #get the fields for each syn ID
-  fieldsAudit <- lapply(crawledProject$anno,getNames)
+
+
+  fieldsAudit <- lapply(crawledProject$anno,utilityFunctions::getNames)
   dictionaryFields <- names(dictionary)
 
   #check if the fields are in the dictionary
